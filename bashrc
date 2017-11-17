@@ -49,22 +49,29 @@ alias vpnvic="sudo openvpn --config ~/openvpn/client.ovpn"
 # for executable python scripts
 export PATH=$PATH:$HOME/bin  # don't overwrite real binaries
 
-export PYJOCO_MJPRO_PATH=/opt/mujoco/mjpro131
+# export PYJOCO_MJPRO_PATH=/opt/mujoco/mjpro131
+export PYJOCO_MJPRO_PATH=/home/tallen/software/mjpro150
 export PYJOCO_MJKEY_PATH=$PYJOCO_MJPRO_PATH/bin/mjkey.txt
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PYJOCO_MJPRO_PATH/bin
 
+export MUJOCO_PY_MJPRO_PATH=/opt/mujoco/mjpro131
+export MUJOCO_PY_MJKEY_PATH=$MUJOCO_PY_MJPRO_PATH/bin/mjkey.txt
+
 # Hack to try to get pyfreenect2 to link to libfreenect.so
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/tallen/ros_ws/devel/lib
-export LIBRARY_PATH=$LIBRARY_PATH:/home/tallen/ros_ws/devel/lib
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/tallen/ros_ws/devel/lib
+# export LIBRARY_PATH=$LIBRARY_PATH:/home/tallen/ros_ws/devel/lib
 
 export CODE=~/code
-export PYTHONPATH=$PYTHONPATH:$CODE/pyjoco
-export PYTHONPATH=$PYTHONPATH:~/code/vgrasp
+# export PYTHONPATH=$PYTHONPATH:$CODE/pyjoco
+# export PYTHONPATH=$PYTHONPATH:~/code/vgrasp
+# export PYTHONPATH=$PYTHONPATH:~/Dropbox/code/kinect
 
 # export CUDA_HOME=/usr/local/cuda
 export VICARIOUS=~/vicarious
-export PYTHONPATH=$PYTHONPATH:$VICARIOUS/grasp_model
-# export PYTHONPATH=$PYTHONPATH:$VICARIOUS/robot_world
+# export PYTHONPATH=$PYTHONPATH:$CODE/grasp_model
+# export PYTHONPATH=$PYTHONPATH:$CODE/rcn3
+# export PYTHONPATH=$PYTHONPATH:$CODE/kinematics
+# export PYTHONPATH=$PYTHONPATH:$CODE/robot_world
 
 alias rebuild="time rm -rf build && rm -rf devel && mkdir build && cd build && cmake .. && time make -j4"
 alias reup="cd .. && rebuild"
@@ -85,3 +92,5 @@ alias cleanswig="find ./ -name "*PYTHON_wrap.cxx" -exec rm -rf {} \;"
 
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 export PATH="/usr/local/cuda/bin:${PATH}"
+
+alias diskusage="du -sh * | sort -h"

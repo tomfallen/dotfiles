@@ -62,7 +62,7 @@ filetype plugin indent on
 "
 " ### end vundle stuff ###
 "
-" let g:yapf_format_yapf_location = '~/software/yapf'
+let g:yapf_format_yapf_location = '~/software/yapf'
 
 " leader key
 let mapleader=","
@@ -238,13 +238,14 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>fc :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>fc :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
+let g:ycm_global_ycm_extra_conf = '~/dotfiles/.ycm_extra_conf.py'
 
 " ???
 set completeopt=menu,menuone
