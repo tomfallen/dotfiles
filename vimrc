@@ -229,7 +229,7 @@ nmap <Leader>ff :YcmCompleter FixIt <CR>
 nmap <Leader>g :YcmCompleter GoToImprecise <CR>
 
 """ clang format options ---------------------------------
-let g:clang_format#command = "clang-format-3.8"
+let g:clang_format#command = "clang-format-4.0"
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
