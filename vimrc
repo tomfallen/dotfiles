@@ -55,6 +55,8 @@ Plugin 'vim-scripts/SWIG-syntax.git'
 Plugin 'stephpy/vim-yaml.git'
 
 " python lint, lots of other stuff
+" Create neovim2 and neovim3 virtualenvs
+"   and install neovim, flake8, yapf
 Bundle 'klen/python-mode'
 
 call vundle#end()
@@ -256,10 +258,12 @@ set completeopt=menu,menuone
 map <leader>fp :PymodeLintAuto<CR>
 map <leader>fy :YapfFullFormat<CR>
 
-" let g:pymode_doc_key = 'K'
+let g:python_host_prog=$HOME . "/Envs/neovim2/bin/python"
+let g:python3_host_prog=$HOME . "/Envs/neovim3/bin/python3"
+let g:pymode_python = 'python3'
 
 let g:pymode_rope=0
-let g:pymode_debug=1
+" let g:pymode_debug=1  " prints a lot of debug info
 let g:pymode_rope_completion = 0
 let g:pymode_rope_lookup_project = 0
 
@@ -273,19 +277,22 @@ let g:pymode_folding = 0  " comletely disable folding
 " set foldlevelstart=2
 
 "Lint
-let g:pymode_lint = 0
+let g:pymode_lint = 1
 let g:pymode_lint_checker = "flake8"  " mccabe, pyflakes, others?
 let g:pymode_lint_write = 0  " auto check on save
 
-" Turn off column limit highlighting
-let g:pymode_options_colorcolumn = 0
+
+" Line length linting and column indicator
+let g:pymode_options_max_line_length = 95
+let g:pymode_options_colorcolumn = 95
 
 " Setting for solarized colorscheme
 " Install solarized dark/light over *new* profiles
 " https://github.com/sigurdga/gnome-terminal-colors-solarized.git
 set t_Co=16
 let g:solarized_termcolors=16
-set background=dark
+" set background=dark
+set background=light
 colorscheme solarized
 call togglebg#map("<f6>")
 

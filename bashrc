@@ -35,7 +35,9 @@ alias cleanpyc="find . -name '*.pyc' -exec rm --force {} +"
 # for executable python scripts
 export PATH=$PATH:$HOME/bin  # don't overwrite real binaries
 
+
 export CODE=~/code
+export PYTHONPATH=$PYTHONPATH:$CODE/falkor
 
 alias rebuild="time rm -rf build && rm -rf devel && mkdir build && cd build && cmake .. && time make -j4"
 alias reup="cd .. && rebuild"
