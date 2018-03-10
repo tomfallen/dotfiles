@@ -43,6 +43,7 @@ Plugin 'majutsushi/tagbar'
 " might be better than a.vim?
 Plugin 'derekwyatt/vim-fswitch'
 " settings are in .vim/after/plugin/fswitch.vim
+" Currently modified to add .cc files.
 
 Plugin 'vim-syntastic/syntastic.git'
 
@@ -177,6 +178,22 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+nnoremap <silent> = :exe "vertical resize +5" <CR>
+nnoremap <silent> - :exe "vertical resize -5" <CR>
+
+" "
+" " fswitch settings
+" "
+nmap <silent> ,of :FSHere<CR>
+nmap <silent> ,ol :FSRight<CR>
+nmap <silent> ,oL :FSSplitRight<CR>
+nmap <silent> ,oh :FSLeft<CR>
+nmap <silent> ,oH :FSSplitLeft<CR>
+nmap <silent> ,ok :FSAbove<CR>
+nmap <silent> ,oK :FSSplitAbove<CR>
+nmap <silent> ,oj :FSBelow<CR>
+nmap <silent> ,oJ :FSSplitBelow<CR>
+
 " Note that pep8 didn't work until flake8 was installed
 " pylint seems to be broken
 " let g:syntastic_always_populate_loc_list = 1
@@ -201,6 +218,7 @@ autocmd FileType python let b:syntastic_python_flake8_args =
     \ get(g:, 'syntastic_python_flake8_args', '') .
     \ FindConfig('--config', '.flake8', expand('<afile>:p:h', 1))
 
+
 "
 "--------- YouCompleteMe options ------------------------
 "
@@ -210,8 +228,8 @@ let g:Show_diagnostics_ui = 1 "default 1
 "will put icons in Vim's gutter on lines that have a diagnostic set.
 "Turning this off will also turn off the YcmErrorLine and YcmWarningLine
 "highlighting
-let g:ycm_enable_diagnostic_signs = 1  " signs in gutter
-let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_enable_diagnostic_signs = 0  " signs in gutter
+let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
 
@@ -267,7 +285,7 @@ let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_lookup_project = 0
 
-" syntax highlighting
+" " syntax highlighting
 let g:pymode_syntax=1
 let g:pymode_syntax_all=1
 let g:pymode_syntax_indent_errors=g:pymode_syntax_all
@@ -281,10 +299,12 @@ let g:pymode_lint = 1
 let g:pymode_lint_checker = "flake8"  " mccabe, pyflakes, others?
 let g:pymode_lint_write = 0  " auto check on save
 
-
-" Line length linting and column indicator
+" Pylint configuration file
+" let g:pymode_lint_config = '$HOME/pylint.rc'  " Doesn't work
+" pymode doesn't seem to accept config files, so we specify things manually
 let g:pymode_options_max_line_length = 95
 let g:pymode_options_colorcolumn = 95
+
 
 " Setting for solarized colorscheme
 " Install solarized dark/light over *new* profiles

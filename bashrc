@@ -1,7 +1,7 @@
 eval `dircolors ~/.dir_colors/dircolors`
 
 # Stuff for virtual environment wrapper
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 export WORKON_HOME=~/Envs
 
 alias view="vim -R"
