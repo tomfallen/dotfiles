@@ -24,7 +24,9 @@ Bundle 'rhysd/vim-clang-format'
 
 " Nice comment toggling.
 " Has a lot of unneeded keybindings?
-Plugin 'tomtom/tcomment_vim.git'
+" Plugin 'tomtom/tcomment_vim.git'
+
+Plugin 'tpope/vim-commentary.git'
 
 " Python formatting
 Plugin 'pignacio/vim-yapf-format'
@@ -42,8 +44,6 @@ Plugin 'majutsushi/tagbar'
 " opening companion files
 " might be better than a.vim?
 Plugin 'derekwyatt/vim-fswitch'
-" settings are in .vim/after/plugin/fswitch.vim
-" Currently modified to add .cc files.
 
 Plugin 'vim-syntastic/syntastic.git'
 
@@ -53,12 +53,14 @@ Plugin 'altercation/vim-colors-solarized'
 " Syntax plugins
 Plugin 'vim-scripts/scons.vim.git'
 Plugin 'vim-scripts/SWIG-syntax.git'
-Plugin 'stephpy/vim-yaml.git'
+Plugin 'tarekbecker/vim-yaml-formatter'
 
 " python lint, lots of other stuff
 " Create neovim2 and neovim3 virtualenvs
-"   and install neovim, flake8, yapf
+"   and install neovim, flake8, yapf, pyyaml
 Bundle 'klen/python-mode'
+
+Bundle 'bounceme/dim-jump'
 
 call vundle#end()
 filetype plugin indent on
@@ -70,9 +72,15 @@ let g:yapf_format_yapf_location = '~/software/yapf'
 " leader key
 let mapleader=","
 
+set modelines=0
+set nomodeline
+
 " Avoid hitting Esc so much - use jk instead.
 inoremap jk <C-[>
 " C-[ is better than Esc, not clear why.
+
+" Hack to insert a single character
+nnoremap <C-J> i <ESC>r
 
 " sudo write this
 cmap W! w !sudo tee % >/dev/null
@@ -179,7 +187,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 nnoremap <silent> = :exe "vertical resize +5" <CR>
-nnoremap <silent> - :exe "vertical resize -5" <CR>
+" nnoremap <silent> - :exe "vertical resize -5" <CR>  " doesn't work
 
 " "
 " " fswitch settings
@@ -196,12 +204,20 @@ nmap <silent> ,oJ :FSSplitBelow<CR>
 
 " Note that pep8 didn't work until flake8 was installed
 " pylint seems to be broken
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 " let g:syntastic_python_checkers = ['pep8']
 let g:syntastic_python_checkers = ['flake8']
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=5
+let g:syntastic_java_javac_config_file_enabled=1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Command for finding a config file and passing it to pep8
 " Works, but pep8 doesn't recognize it
@@ -339,6 +355,6 @@ autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
 
 autocmd FileType scons set commentstring=#\ %s
 autocmd FileType cmake set commentstring=#\ %s
-autocmd FileType cpp set commentstring=//\ %s
 autocmd FileType swig set commentstring=//\ %s
+autocmd FileType cpp set commentstring=//\ %s
 autocmd FileType c set commentstring=//\ %s
