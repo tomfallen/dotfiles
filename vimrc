@@ -29,7 +29,8 @@ Bundle 'rhysd/vim-clang-format'
 Plugin 'tpope/vim-commentary.git'
 
 " Python formatting
-Plugin 'pignacio/vim-yapf-format'
+" Plugin 'pignacio/vim-yapf-format'  " python2 only
+Plugin 'cuerty/vim-yapf-format'  " python3 fork
 
 " Plugin 'vim-scripts/taglist.vim'
 
@@ -67,8 +68,6 @@ filetype plugin indent on
 "
 " ### end vundle stuff ###
 "
-let g:yapf_format_yapf_location = '~/software/yapf'
-
 " leader key
 let mapleader=","
 
@@ -350,6 +349,7 @@ au BufNewFile,BufRead *.sage set filetype=python
 au BufNewFile,BufRead *.urdf set filetype=xml
 au BufNewFile,BufRead *.launch set filetype=xml
 au BufNewFile,BufRead *.c set filetype=c
+au BufNewFile,BufRead *.tsx set filetype=javascript
 
 autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
 
@@ -358,3 +358,5 @@ autocmd FileType cmake set commentstring=#\ %s
 autocmd FileType swig set commentstring=//\ %s
 autocmd FileType cpp set commentstring=//\ %s
 autocmd FileType c set commentstring=//\ %s
+
+:command Pdb :normal! Oimport ipdb; ipdb.set_trace()<Enter><ESC>

@@ -20,7 +20,7 @@ alias sourcebash="source $DOTFILE_PATH/bashrc"
 alias vimbash="nvim $DOTFILE_PATH/bashrc"
 alias vimvim="nvim $DOTFILE_PATH/vimrc"
 
-alias sgrep="grep -InR --color=auto --exclude-dir={build,devel,.svn,.git,tags,.ropeproject,externals,venv,site-packages,.pytest_cache} --exclude={*.log,tags}"
+alias sgrep="grep -InRs --color=auto --exclude-dir={build,devel,.svn,.git,tags,.ropeproject,externals,venv,site-packages,.pytest_cache} --exclude={*.log,tags}"
 
 alias sc="time scons -j 4"
 alias cm="cmake -j4 ."
@@ -50,28 +50,6 @@ alias cleanpyc="find . -name '*.pyc' -exec rm --force {} +"
 export PATH=$PATH:$HOME/bin  # don't overwrite real binaries
 
 
-export CODE=~/code
-export FALKOR=$CODE/falkor
-export PYTHONPATH=$PYTHONPATH:$FALKOR
-export WORKON_FALKOR="workon falkor"
-
-alias cdfalkor="cd $FALKOR"
-alias wf=$WORKON_FALKOR
-alias lookup="$WORKON_FALKOR && $FALKOR/scripts/backend/lookup.py"
-alias caputil="$WORKON_FALKOR && $FALKOR/scripts/backend/capture_util.py index.json"
-alias toopy="$WORKON_FALKOR && $FALKOR/scripts/gui/tattoo_gui.py Video_0.mp4 --write-stills"
-alias tattoo_create_index="$WORKON_FALKOR && $FALKOR/scripts/backend/capture_util.py --create --base-dir=~/tattoo"
-alias analyze="workon ovea && $CODE/ovea/analyze_tracks.py -- --base-dir ~/data/ovea/data_all/captures"
-
-# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-# export WORKON_HOME=~/Envs
-# export CODE=~/code
-export ATLAS=$CODE/atlas
-export PYTHONPATH=$PYTHONPATH:$ATLAS
-export WORKON_ATLAS="workon atlas"
-alias cdatlas="cd $ATLAS"
-alias wa=$WORKON_ATLAS
-
 alias rebuild="time rm -rf build && rm -rf devel && mkdir build && cd build && cmake .. && time make -j4"
 alias reup="cd .. && rebuild"
 
@@ -95,3 +73,11 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 export PATH="/usr/local/cuda/bin:${PATH}"
 
 alias diskusage="du -sh * | sort -h"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/tom/google-cloud-sdk/path.bash.inc' ]; then . '/home/tom/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/tom/google-cloud-sdk/completion.bash.inc' ]; then . '/home/tom/google-cloud-sdk/completion.bash.inc'; fi
+
+source ~/.bashrc_local

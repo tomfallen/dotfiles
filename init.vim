@@ -1,6 +1,5 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
+set runtimepath+=~/.vim,~/.vim/after
+set packpath+=~vim
 source ~/.vimrc
 
-let g:python_host_prog="/home/tom/Envs/neovim2/bin/python"
-" let g:python_host_prog="/home/tom/Envs/neovim3/bin/python"
+let g:python_host_prog=$WORKON_HOME."/neovim3/bin/python3"
