@@ -312,6 +312,7 @@ let g:pymode_folding = 0  " comletely disable folding
 "Lint
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "flake8"  " mccabe, pyflakes, others?
+" let g:pymode_lint_checker = "pylint"  " mccabe, pyflakes, others?
 let g:pymode_lint_write = 0  " auto check on save
 
 " Pylint configuration file
@@ -345,11 +346,14 @@ au BufNewFile,BufRead *.swig set filetype=swig
 au BufNewFile,BufRead *.swg set filetype=swig
 au BufNewFile,BufRead *.sip set filetype=swig  " Hack, probably not great
 au BufNewFile,BufRead *.ino set filetype=c  " arduino files
+au BufNewFile,BufRead *.frag set filetype=c  " shaders
+au BufNewFile,BufRead *.vert set filetype=c  " shaders
 au BufNewFile,BufRead *.sage set filetype=python
 au BufNewFile,BufRead *.urdf set filetype=xml
 au BufNewFile,BufRead *.launch set filetype=xml
 au BufNewFile,BufRead *.c set filetype=c
 au BufNewFile,BufRead *.tsx set filetype=javascript
+au BufNewFile,BufRead *.kt set filetype=java
 
 autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
 
